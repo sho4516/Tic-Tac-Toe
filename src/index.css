@@ -96,6 +96,7 @@ h1 {
   text-align: center;
   text-transform: uppercase;
   margin-left: 0.5rem;
+  font-weight: bolder;
 }
 
 #players button:hover {

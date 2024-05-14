@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-export default function Player({ name, symbol }) {
+export default function Player({ name, symbol, isActive }) {
   const [isEditing, setisEditing] = useState(false);
   const [inputText, setInputText] = useState(name);
   return (
-    <li>
+    <li className={isActive ? "active" : undefined}>
       <span className="player">
         {isEditing && (
           <input
