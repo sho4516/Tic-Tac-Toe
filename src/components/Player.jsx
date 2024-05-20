@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Player({ name, symbol, isActive }) {
+export default function Player({ name, symbol, isActive, onNameChange }) {
   const [isEditing, setisEditing] = useState(false);
   const [inputText, setInputText] = useState(name);
   return (
@@ -20,6 +20,9 @@ export default function Player({ name, symbol, isActive }) {
         <button
           onClick={() => {
             setisEditing((edit) => !edit);
+            if (isEditing) {
+              onNameChange(symbol, inputText);
+            }
           }}
         >
           {isEditing ? "Save" : "Edit"}
