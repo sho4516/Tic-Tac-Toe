@@ -6,17 +6,15 @@ const initialGameBoard = [
   [null, null, null],
 ];
 
-const GameBoard = ({onSelect, currentSymbol}) => {
-  const [gameBoard, setGameBoard] = useState(initialGameBoard);
+const GameBoard = ({ onSelect, turns }) => {
+  const gameBoard = initialGameBoard;
 
-  function handleSelectSquare(row, col) {
-    setGameBoard((prevBoard) => {
-      const newGameBoard = [...prevBoard.map((item) => [...item])];
-      newGameBoard[row][col] = currentSymbol;
-      return newGameBoard;
-    });
+  for (let turn of turns) {
+    console.log(turn);
+    const { square, player } = turn;
+    const { col, row } = square;
 
-    onSelect();
+    gameBoard[row][col] = player;
   }
 
   return (
@@ -30,7 +28,7 @@ const GameBoard = ({onSelect, currentSymbol}) => {
                   <li key={colIndex}>
                     <button
                       onClick={() => {
-                        handleSelectSquare(rowIndex, colIndex);
+                        onSelect(rowIndex, colIndex);
                       }}
                     >
                       {col}

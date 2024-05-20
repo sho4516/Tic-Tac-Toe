@@ -4,10 +4,24 @@ import Player from "./components/Player";
 
 function App() {
   const [activePlayer, setActivePlayer] = useState("X");
+  const [gameTurn, setGameTurn] = useState([]);
 
-  function handleSelectSquare() {
+  function handleSelectSquare(rowIndex, colIndex) {
     setActivePlayer((prevActive) => {
       return prevActive === "X" ? "0" : "X";
+    });
+
+    setGameTurn((prev) => {
+      let currPlayer = "X";
+
+      if (prev.length > 0 && prev[0].player == "X") {
+        currPlayer = "0";
+      }
+
+      return [
+        { square: { row: rowIndex, col: colIndex }, player: currPlayer },
+        ...prev,
+      ];
     });
   }
 
@@ -21,12 +35,12 @@ function App() {
             isActive={activePlayer === "X"}
           ></Player>
           <Player
-            name="Aayushi"
+            name="Player 2"
             symbol="0"
             isActive={activePlayer === "0"}
           ></Player>
         </ol>
-        <GameBoard onSelect={handleSelectSquare} currentSymbol={activePlayer} />
+        <GameBoard onSelect={handleSelectSquare} turns={gameTurn} />
       </div>
     </main>
   );
