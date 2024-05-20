@@ -30,6 +30,7 @@ const GameBoard = ({ onSelect, turns }) => {
                       onClick={() => {
                         onSelect(rowIndex, colIndex);
                       }}
+                      disabled={col != null}
                     >
                       {col}
                     </button>
